@@ -13,13 +13,9 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 mb-10">
         @forelse($companies as $company)
             <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                <div class="flex-shrink-0">
-                    @if($company->logo)
-                        <img class="h-10 w-10 rounded-full" src="{{ $company->logo }}" alt="{{ $company->company_name }}">
-                    @else
-                        <div class="w-10 h-10 rounded-full bg-blue-800 flex justify-center items-center"><span class="text-white font-bold">{{ substr($company->company_name, 0, 1) }}</span></div>
-                    @endif
-                </div>
+{{--                <div class="flex-shrink-0">--}}
+{{--                    <div class="w-10 h-10 rounded-full bg-blue-800 flex justify-center items-center"><span class="text-white font-bold">{{ substr($company->company_name, 0, 1) }}</span></div>--}}
+{{--                </div>--}}
                 <div class="flex-1 min-w-0">
                     <a href="/companies/{{ $company->id }}" class="focus:outline-none">
                         <span class="absolute inset-0" aria-hidden="true"></span>
@@ -93,9 +89,6 @@
                     <x-input.text wire:model="email_address" id="email_address" />
                 </x-input.group>
 
-                <x-input.group for="logo" label="Logo">
-                    <x-input.file-upload wire:model="logo" id="logo" />
-                </x-input.group>
             </x-slot>
 
             <x-slot name="footer">
