@@ -6,7 +6,7 @@
             </div>
 
             <div>
-                <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary>
+                <x-button.primary wire:click="showModal"><x-icon.plus/> New</x-button.primary>
             </div>
         </div>
     </div>
@@ -14,7 +14,11 @@
         @forelse($companies as $company)
             <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="{{ $company->logo }}" alt="{{ $company->company_name }}">
+                    @if($company->logo)
+                        <img class="h-10 w-10 rounded-full" src="{{ $company->logo }}" alt="{{ $company->company_name }}">
+                    @else
+                        <div class="w-10 h-10 rounded-full bg-blue-800 flex justify-center items-center"><span class="text-white font-bold">{{ substr($company->company_name, 0, 1) }}</span></div>
+                    @endif
                 </div>
                 <div class="flex-1 min-w-0">
                     <a href="/companies/{{ $company->id }}" class="focus:outline-none">
@@ -47,4 +51,60 @@
         @endforelse
     </div>
     {{ $companies->links() }}
+
+    <form wire:submit.prevent="create">
+        <x-modal.dialog wire:model.defer="showCreateModal">
+            <x-slot name="title">Create Company</x-slot>
+
+            <x-slot name="content">
+                <x-input.group for="company_name" label="Company Name">
+                    <x-input.text wire:model="company_name" id="company_name" />
+                </x-input.group>
+
+                <x-input.group for="status" label="Status">
+                    <x-input.select wire:model="status" id="status">
+                        @foreach (App\Models\Company::STATUSES as $value => $label)
+                            <option value="{{ $value }}">{{ $label }}</option>
+                        @endforeach
+                    </x-input.select>
+                </x-input.group>
+
+                <x-input.group for="address" label="Address">
+                    <x-input.text wire:model="address" id="address" />
+                </x-input.group>
+
+                <x-input.group for="city" label="City">
+                    <x-input.text wire:model="city" id="city" />
+                </x-input.group>
+
+                <x-input.group for="state" label="State">
+                    <x-input.text wire:model="state" id="state" />
+                </x-input.group>
+
+                <x-input.group for="postal_code" label="Postal Code">
+                    <x-input.text wire:model="postal_code" id="postal_code" />
+                </x-input.group>
+
+                <x-input.group for="phone_number" label="Phone Number">
+                    <x-input.text wire:model="phone_number" id="phone_number" />
+                </x-input.group>
+
+                <x-input.group for="email_address" label="Email Address">
+                    <x-input.text wire:model="email_address" id="email_address" />
+                </x-input.group>
+
+                <x-input.group for="logo" label="Logo">
+                    <x-input.file-upload wire:model="logo" id="logo" />
+                </x-input.group>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-button.secondary wire:click="$set('showCreateModal', false)">Cancel</x-button.primary>
+                <x-button.primary type="submit">Save</x-button.primary>
+            </x-slot>
+        </x-modal.dialog>
+    </form>
+
+    <x-notification />
+
 </div>
