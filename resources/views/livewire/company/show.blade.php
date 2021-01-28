@@ -59,6 +59,7 @@
 
                 <x-input.group for="status" label="Status">
                     <x-input.select wire:model="status" id="status">
+                        <option value="" disabled>Select Status...</option>
                         @foreach (App\Models\Company::STATUSES as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach

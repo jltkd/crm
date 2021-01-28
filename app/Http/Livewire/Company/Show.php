@@ -13,7 +13,7 @@ class Show extends Component
     public $search = '';
     public $showCreateModal = false;
     public $company_name;
-    public $status;
+    public $status = '';
     public $address;
     public $city;
     public $state;
