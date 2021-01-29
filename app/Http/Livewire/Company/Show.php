@@ -38,7 +38,7 @@ class Show extends Component
 
     protected $rules = [
         'company_name' => 'required|min:3|unique:companies',
-        'status' => 'required',
+//        'status' => 'required|in:.collect(Company::STATUSES)->keys()->implode(',')',
     ];
 
     public function updated($propertyName)
@@ -56,6 +56,12 @@ class Show extends Component
         $this->postal_code = '';
         $this->phone_number = '';
         $this->email_address = '';
+    }
+
+    public function closeModal()
+    {
+        $this->showCreateModal = false;
+        $this->resetInputs();
     }
 
     public function create()
@@ -77,11 +83,6 @@ class Show extends Component
         $this->saved = true;
         $this->dispatchBrowserEvent('notify', 'Company Saved!');
         $this->resetInputs();
-    }
-
-    public function save()
-    {
-
     }
 
     public function render()

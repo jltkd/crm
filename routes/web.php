@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/companies', function () {
     return view('company.index');
 })->name('companies');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/companies/{id}', function () {
-    return view('company.show');
-})->name('company');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::get('/companies/{id}', [CompanyController::class, 'show']);
+});
