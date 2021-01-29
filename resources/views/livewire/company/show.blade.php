@@ -50,6 +50,7 @@
             <x-slot name="content">
                 <x-input.group for="company_name" label="Company Name">
                     <x-input.text wire:model="company_name" id="company_name" required />
+                    @error('company_name') <span class="text-red-600">{{ $message }}</span> @enderror
                 </x-input.group>
 
                 <x-input.group for="status" label="Status">

@@ -28,12 +28,22 @@ class Show extends Component
         $this->showCreateModal = true;
     }
 
-    public function rules()
+//    public function rules()
+//    {
+//        return [
+//          'company_name' => 'required|min:3|unique:companies',
+//          'status' => 'required|in:'.collect(Company::STATUSES)->keys()->implode(','),
+//        ];
+//    }
+
+    protected $rules = [
+        'company_name' => 'required|min:3|unique:companies',
+        'status' => 'required',
+    ];
+
+    public function updated($propertyName)
     {
-        return [
-          'company_name' => 'required|min:3',
-          'status' => 'required|in:'.collect(Company::STATUSES)->keys()->implode(','),
-        ];
+        $this->validateOnly($propertyName);
     }
 
     public function resetInputs()
@@ -50,6 +60,8 @@ class Show extends Component
 
     public function create()
     {
+        $this->validate();
+
         Company::create([
             'company_name'  => $this->company_name,
             'status'        => $this->status,

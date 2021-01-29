@@ -1,0 +1,3 @@
+<div>
+    {{ $company->title }}
+</div>
