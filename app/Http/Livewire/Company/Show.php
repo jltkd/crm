@@ -36,7 +36,17 @@ class Show extends Component
         ];
     }
 
-    // TODO: Need to finish logo upload
+    public function resetInputs()
+    {
+        $this->company_name = '';
+        $this->status = '';
+        $this->address = '';
+        $this->city = '';
+        $this->state = '';
+        $this->postal_code = '';
+        $this->phone_number = '';
+        $this->email_address = '';
+    }
 
     public function create()
     {
@@ -54,6 +64,7 @@ class Show extends Component
         $this->showCreateModal = false;
         $this->saved = true;
         $this->dispatchBrowserEvent('notify', 'Company Saved!');
+        $this->resetInputs();
     }
 
     public function save()

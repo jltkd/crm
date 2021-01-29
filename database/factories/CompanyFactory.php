@@ -22,9 +22,9 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            'company_name' => $this->faker->company,
+            'company_name' => $this->faker->unique()->company,
             'status' => $this->faker->randomElement(['live', 'prospect', 'closed']),
-            'address' => $this->faker->address,
+            'address' => $this->faker->streetAddress,
             'city' => $this->faker->city,
             'state' => $this->faker->state,
             'postal_code' => $this->faker->postcode,
