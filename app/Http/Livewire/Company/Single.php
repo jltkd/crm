@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Company;
 
+use App\Models\Company;
 use Livewire\Component;
 
 class Single extends Component
 {
     public $company;
 
-    public function mount($company)
+    public function mount(Company $company)
     {
-        $this->title = $company->company_name;
+        $this->company = $company;
     }
 
     public function render()

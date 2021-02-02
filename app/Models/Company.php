@@ -20,4 +20,9 @@ class Company extends Model
     protected $fillable = [
         'company_name', 'status', 'address', 'city', 'state', 'postal_code', 'phone_number', 'email_address', 'logo'
     ];
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }
