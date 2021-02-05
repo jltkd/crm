@@ -7,7 +7,12 @@ use Livewire\Component;
 
 class Contacts extends Component
 {
-    public Company $company;
+    public $company;
+
+    public function mount(Company $company)
+    {
+        $this->company = $company;
+    }
 
     public function render()
     {

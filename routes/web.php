@@ -28,5 +28,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/companies', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/companies/{company}', \App\Http\Livewire\Company\Single::class);
+    Route::get('/companies/{slug}', \App\Http\Livewire\Company\Single::class);
 });

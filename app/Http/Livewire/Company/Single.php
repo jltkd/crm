@@ -9,12 +9,10 @@ use Livewire\Component;
 class Single extends Component
 {
     public $company;
-    public $contacts;
 
-    public function mount(Company $company)
+    public function mount($slug)
     {
-        $this->company = $company;
-        $contacts = $company->contacts();
+        $this->company = Company::where('slug', $slug)->first();
     }
 
     public function render()
