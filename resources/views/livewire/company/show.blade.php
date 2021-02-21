@@ -74,15 +74,7 @@
                 <x-input.group for="postal_code" label="Postal Code">
                     <x-input.text wire:model="postal_code" id="postal_code" />
                 </x-input.group>
-
-                <x-input.group for="phone_number" label="Phone Number">
-                    <x-input.text wire:model="phone_number" id="phone_number" />
-                </x-input.group>
-
-                <x-input.group for="email_address" label="Email Address">
-                    <x-input.text wire:model="email_address" id="email_address" />
-                </x-input.group>
-
+                
             </x-slot>
 
             <x-slot name="footer">

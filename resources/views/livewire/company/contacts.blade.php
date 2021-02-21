@@ -1,6 +1,6 @@
 <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-    <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-        <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+    <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+        <div class="-ml-4 -mt-2 flex items-end justify-between flex-wrap sm:flex-nowrap">
             <div class="ml-4 mt-2">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                     Contacts
@@ -14,7 +14,7 @@
         </div>
     </div>
     <ul class="divide-y divide-gray-200 p-5">
-        @foreach($company->contacts as $contact)
+        @forelse($company->contacts as $contact)
             <li class="py-4 flex">
                 <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name={{ $contact->first_name }}+{{ $contact->last_name }}" alt="{{ $contact->first_name }} {{ $contact->last_name }}">
                 <div class="ml-3">
@@ -23,7 +23,9 @@
                     <p class="text-sm text-gray-500">{{ $contact->phone_number }}</p>
                 </div>
             </li>
-        @endforeach
+        @empty
+            <p class="text-gray-300 text-center">No Contacts have been added</p>
+        @endforelse
     </ul>
 
     <form wire:submit.prevent="create">
@@ -59,7 +61,7 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-button.secondary wire:click="closeModal">Cancel</x-button.primary>
+                <x-button.secondary wire:click="closeModal">Cancel</x-button.secondary>
                     <x-button.primary type="submit">Save</x-button.primary>
             </x-slot>
         </x-modal.dialog>

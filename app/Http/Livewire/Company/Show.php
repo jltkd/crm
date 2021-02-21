@@ -18,8 +18,6 @@ class Show extends Component
     public $city;
     public $state;
     public $postal_code;
-    public $phone_number;
-    public $email_address;
     public $logo;
     public $saved = false;
 
@@ -28,17 +26,8 @@ class Show extends Component
         $this->showCreateModal = true;
     }
 
-//    public function rules()
-//    {
-//        return [
-//          'company_name' => 'required|min:3|unique:companies',
-//          'status' => 'required|in:'.collect(Company::STATUSES)->keys()->implode(','),
-//        ];
-//    }
-
     protected $rules = [
         'company_name' => 'required|min:3|unique:companies',
-//        'status' => 'required|in:.collect(Company::STATUSES)->keys()->implode(',')',
     ];
 
     public function updated($propertyName)
