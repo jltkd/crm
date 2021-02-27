@@ -12,7 +12,7 @@
     </div>
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 mb-10">
         @forelse($companies as $company)
-            <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+            <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                 <div class="flex-1 min-w-0">
                     <a href="/companies/{{ $company->slug }}" class="focus:outline-none">
                         <span class="absolute inset-0" aria-hidden="true"></span>
@@ -74,11 +74,11 @@
                 <x-input.group for="postal_code" label="Postal Code">
                     <x-input.text wire:model="postal_code" id="postal_code" />
                 </x-input.group>
-                
+
             </x-slot>
 
             <x-slot name="footer">
-                <x-button.secondary wire:click="closeModal">Cancel</x-button.primary>
+                <x-button.secondary wire:click="closeModal">Cancel</x-button.secondary>
                 <x-button.primary type="submit">Save</x-button.primary>
             </x-slot>
         </x-modal.dialog>

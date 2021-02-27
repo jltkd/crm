@@ -18,6 +18,9 @@ class DomainList extends Component
     public $registrar;
     public $expires;
     public $managed_by;
+    public $search = '';
+
+    protected $queryString = ['search'];
 
     protected $rules = [
         'name' => 'required',
@@ -71,6 +74,9 @@ class DomainList extends Component
 
     public function render()
     {
-        return view('livewire.company.domain-list');
+        $search = '%'.$this->search.'%';
+        return view('livewire.company.domain-list',[
+            'domains' => Domain::where('name', 'like', $search)->orderBy('name')->get()
+        ]);
     }
 }
