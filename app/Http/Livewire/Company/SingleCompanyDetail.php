@@ -19,6 +19,7 @@ class SingleCompanyDetail extends Component
             'editing.city' => 'nullable',
             'editing.state' => 'nullable',
             'editing.postal_code' => 'nullable',
+            'editing.phone_number' => 'nullable',
         ];
     }
 

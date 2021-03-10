@@ -26,7 +26,7 @@ class Company extends Model
     }
 
     const STATUSES = [
-        'live'     => 'Live',
+        'active'     => 'Active',
         'prospect' => 'Prospect',
         'closed'   => 'Closed',
     ];

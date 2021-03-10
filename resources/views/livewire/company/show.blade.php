@@ -22,7 +22,7 @@
                         <p class="text-xs text-gray-400 truncate">
                             {{ $company->phone_number }}
                         </p>
-                        @if($company->status === 'live')
+                        @if($company->status === 'active')
                             <span class="absolute top-3 right-3 flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ $company->status }}</span>
                         @elseif($company->status === 'prospect')
                             <span class="absolute top-3 right-3 flex-shrink-0 inline-block px-2 py-0.5 text-yellow-800 text-xs font-medium bg-yellow-100 rounded-full">{{ $company->status }}</span>
@@ -73,6 +73,10 @@
 
                 <x-input.group for="postal_code" label="Postal Code">
                     <x-input.text wire:model="postal_code" id="postal_code" />
+                </x-input.group>
+
+                <x-input.group for="phone_number" label="Phone Number">
+                    <x-input.text wire:model="phone_number" id="phone_number" />
                 </x-input.group>
 
             </x-slot>

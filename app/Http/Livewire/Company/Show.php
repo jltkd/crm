@@ -18,6 +18,7 @@ class Show extends Component
     public $city;
     public $state;
     public $postal_code;
+    public $phone_number;
     public $logo;
     public $saved = false;
 
@@ -44,7 +45,6 @@ class Show extends Component
         $this->state = '';
         $this->postal_code = '';
         $this->phone_number = '';
-        $this->email_address = '';
     }
 
     public function closeModal()
@@ -65,7 +65,6 @@ class Show extends Component
             'state'         => $this->state,
             'postal_code'   => $this->postal_code,
             'phone_number'  => $this->phone_number,
-            'email_address' => $this->email_address,
         ]);
 
         $this->showCreateModal = false;

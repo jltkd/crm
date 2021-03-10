@@ -9,6 +9,33 @@ class DomainList extends Component
 {
     public $server;
 
+    public $showCreateModal = false;
+    public $saved = false;
+    public $name;
+    public $url;
+    public $registrar;
+    public $expires;
+    public $managed_by;
+
+    public function showModal()
+    {
+        $this->showCreateModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->showCreateModal = false;
+
+        $this->resetInputs();
+    }
+
+    public function resetInputs()
+    {
+        $this->company_id = '';
+        $this->name = '';
+        $this->ip_address = '';
+    }
+
     public function mount(Server $server)
     {
         $this->server = $server;

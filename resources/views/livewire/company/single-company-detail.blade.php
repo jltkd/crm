@@ -73,6 +73,10 @@
                     <x-input.text wire:model="editing.postal_code" id="postal_code" />
                 </x-input.group>
 
+                <x-input.group for="phone_number" label="Phone Number" :error="$errors->first('editing.phone_number')">
+                    <x-input.text wire:model="editing.phone_number" id="phone_number" />
+                </x-input.group>
+
             </x-slot>
 
             <x-slot name="footer">
