@@ -42,6 +42,22 @@ class ShowAllServers extends Component
       'ip_address' => 'required',
     ];
 
+    public function create()
+    {
+        $this->validate();
+
+        Server::create([
+            'company_id' => $this->company_id,
+            'name'       => $this->name,
+            'ip_address' => $this->ip_address,
+        ]);
+
+        $this->showCreateModal = false;
+        $this->saved = true;
+        $this->dispatchBrowserEvent('notify', 'Server Saved!');
+        $this->resetInputs();
+    }
+
     public function render()
     {
         $search = '%'.$this->search.'%';

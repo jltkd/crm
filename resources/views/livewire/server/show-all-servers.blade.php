@@ -2,7 +2,7 @@
     <div class="py-4 space-y-4">
         <div class="flex justify-between">
             <div class="w-1/4">
-                <x-input.text wire:model="search" placeholder="Search Companies..." />
+                <x-input.text wire:model="search" placeholder="Search Servers..." />
             </div>
 
             <div>
@@ -37,18 +37,18 @@
 
     {{ $servers->links() }}
 
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="create">
         <x-modal.dialog wire:model.defer="showCreateModal">
             <x-slot name="title">Create Server</x-slot>
 
             <x-slot name="content">
 
                 <x-input.group for="name" label="Server Name" :error="$errors->first('editing.name')">
-                    <x-input.text wire:model="editing.name" id="name" />
+                    <x-input.text wire:model="name" id="name" />
                 </x-input.group>
 
                 <x-input.group for="ip_address" label="IP Address" :error="$errors->first('editing.ip_address')">
-                    <x-input.text wire:model="editing.ip_address" id="ip_address" />
+                    <x-input.text wire:model="ip_address" id="ip_address" />
                 </x-input.group>
 
             </x-slot>

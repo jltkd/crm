@@ -13,9 +13,9 @@
             </div>
         </div>
     </div>
-    <ul class="divide-y divide-gray-200 p-5">
+    <ul class="p-5">
         @forelse($company->domains as $domain)
-            <li class="py-4 flex">
+            <li class="py-4 flex items-center hover:bg-gray-50 sm:rounded-lg">
                 <div class="ml-3">
                     <a href="{{ $domain->url }}" target="_blank" class="text-sm font-medium text-gray-900">{{ $domain->name }}</a>
                     <p class="text-sm text-gray-500">{{ $domain->server->name }}</p>
