@@ -33,7 +33,7 @@
             <x-slot name="content">
 
                 <x-input.group for="server_id" label="Server" :error="$errors->first('server_id')">
-                    <x-input.select wire:model="server_id" id="server_id">
+                    <x-input.select wire:model="server_id" id="server_id" class="rounded-lg">
                         <option value=""></option>
                         @foreach (App\Models\Server::orderBy('name')->get() as $value)
                             <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -57,12 +57,12 @@
                 </x-input.group>
 
                 <x-input.group for="expires" label="Expires">
-                    <x-input.date wire:model="expires" id="expires" />
+                    <input wire:model="expires" id="expires" type="date" class="rounded-lg form-input border-gray-300 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     @error('expires') <span class="text-red-600">{{ $message }}</span> @enderror
                 </x-input.group>
 
                 <x-input.group for="managed_by" label="Managed By" :error="$errors->first('managed_by')">
-                    <x-input.select wire:model="managed_by" id="managed_by">
+                    <x-input.select wire:model="managed_by" id="managed_by" class="rounded-lg">
                         <option value=""></option>
                         @foreach (App\Models\Domain::MANAGED as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
