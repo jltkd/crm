@@ -15,12 +15,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/companies', function () {
-    return view('company.index');
-})->name('companies');
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/companies/{slug}', \App\Http\Livewire\Company\Single::class);
+    Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
+    Route::get('/companies/{company:slug}', [CompanyController::class, 'show'])->name('company.show');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/servers', function () {

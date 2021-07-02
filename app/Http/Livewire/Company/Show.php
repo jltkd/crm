@@ -8,76 +8,15 @@ use Livewire\WithPagination;
 
 class Show extends Component
 {
-    use WithPagination;
+    public $company;
 
-    public $search = '';
-    public $showCreateModal = false;
-    public $company_name;
-    public $status = '';
-    public $address;
-    public $city;
-    public $state;
-    public $postal_code;
-    public $phone_number;
-    public $logo;
-    public $saved = false;
-
-    public function showModal()
+    public function mount($slug)
     {
-        $this->showCreateModal = true;
-    }
-
-    protected $rules = [
-        'company_name' => 'required|min:3|unique:companies',
-    ];
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
-
-    public function resetInputs()
-    {
-        $this->company_name = '';
-        $this->status = '';
-        $this->address = '';
-        $this->city = '';
-        $this->state = '';
-        $this->postal_code = '';
-        $this->phone_number = '';
-    }
-
-    public function closeModal()
-    {
-        $this->showCreateModal = false;
-        $this->resetInputs();
-    }
-
-    public function create()
-    {
-        $this->validate();
-
-        Company::create([
-            'company_name'  => $this->company_name,
-            'status'        => $this->status,
-            'address'       => $this->address,
-            'city'          => $this->city,
-            'state'         => $this->state,
-            'postal_code'   => $this->postal_code,
-            'phone_number'  => $this->phone_number,
-        ]);
-
-        $this->showCreateModal = false;
-        $this->saved = true;
-        $this->dispatchBrowserEvent('notify', 'Company Saved!');
-        $this->resetInputs();
+        $this->company = Company::where('slug', $slug)->first();
     }
 
     public function render()
     {
-        $search = '%'.$this->search.'%';
-        return view('livewire.company.show', [
-            'companies' => Company::where('company_name', 'like', $search)->orderBy('company_name')->paginate(24),
-        ]);
+        return view('livewire.company.show');
     }
 }

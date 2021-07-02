@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
+        return view('company.index');
     }
 
     /**
@@ -38,16 +34,11 @@ class CompanyController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Company $company)
     {
-        $company = Company::findOrFail($id);
-        return view('company.show', compact('company'));
+        return view('company.show', [
+            'company' => $company
+        ]);
     }
 
     /**

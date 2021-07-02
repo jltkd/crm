@@ -11,6 +11,13 @@ class SingleCompanyDetail extends Component
     public Company $editing;
     public $showEditModal = false;
 
+    protected $listeners = ['detailsUpdated'];
+
+    public function detailsUpdated()
+    {
+        $this->company->refresh();
+    }
+
     public function rules()
     {
         return [
@@ -33,7 +40,9 @@ class SingleCompanyDetail extends Component
     {
         $this->validate();
         $this->editing->save();
+        $this->editing->refresh();
         $this->showEditModal = false;
+        $this->emit('detailsUpdated');
     }
 
     public function showModal()

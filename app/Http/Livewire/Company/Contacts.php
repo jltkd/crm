@@ -9,7 +9,7 @@ use Livewire\Component;
 class Contacts extends Component
 {
     public $company;
-    public $showCreateModal = false;
+    public $showEditModal = false;
     public $company_id;
     public $first_name;
     public $last_name;
@@ -17,55 +17,69 @@ class Contacts extends Component
     public $phone_number;
     public $email_address;
     public $saved = false;
+    public Contact $editing;
+
+    protected $listeners = ['contactAdded'];
+
+    public function contactAdded()
+    {
+        $this->editing->refresh();
+    }
 
     public function showModal()
     {
-        $this->showCreateModal = true;
+        $this-$showEditModal = true;
     }
 
     public function mount(Company $company)
     {
         $this->company = $company;
+        $this->editing = $this->makeBlankContact();
     }
 
     protected $rules = [
-        'first_name' => 'required',
-        'last_name' => 'required'
+        'editing.company_id' => 'required',
+        'editing.first_name' => 'required',
+        'editing.last_name' => 'required',
+        'editing.title' => 'required',
+        'editing.phone_number' => 'required',
+        'editing.email_address' => 'required'
     ];
-
-    public function resetInputs()
-    {
-        $this->first_name = '';
-        $this->last_name = '';
-        $this->title = '';
-        $this->phone_number = '';
-        $this->email_address = '';
-    }
 
     public function closeModal()
     {
-        $this->showCreateModal = false;
-        $this->resetInputs();
+        $this->showEditModal = false;
+    }
+
+    public function makeBlankContact()
+    {
+        return Contact::make();
     }
 
     public function create()
     {
+        if ($this->editing->getKey()) $this->editing = $this->makeBlankContact();
+        $this->showEditModal = true;
+    }
+
+    public function edit(Contact $contact)
+    {
+        if ($this->editing->isNot($contact)) $this->editing = $contact;
+        $this->showEditModal = true;
+    }
+
+    public function save()
+    {
         $this->validate();
+        $this->editing->save();
+        $this->showEditModal = false;
+        $this->emit('contactAdded');
+    }
 
-        Contact::create([
-            'company_id' => $this->company->id,
-            'first_name' => $this->first_name,
-            'last_name'  => $this->last_name,
-            'title'      => $this->title,
-            'phone_number' => $this->phone_number,
-            'email_address' => $this->email_address,
-        ]);
-
-        $this->showCreateModal = false;
-        $this->saved = true;
-        $this->company = Company::find($this->company->id);
-        $this->dispatchBrowserEvent('notify', 'Contact Saved!');
-        $this->resetInputs();
+    public function delete($id)
+    {
+        Contact::find($id)->delete();
+        $this->dispatchBrowserEvent('warning', 'Contact Deleted!');
     }
 
     public function render()

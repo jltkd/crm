@@ -48,7 +48,7 @@
     </div>
 
     <form wire:submit.prevent="save">
-        <x-modal.dialog wire:model.defer="showEditModal">
+        <x-modal.dialog wire:model="showEditModal">
             <x-slot name="title">Edit</x-slot>
 
             <x-slot name="content">
@@ -81,7 +81,7 @@
 
             <x-slot name="footer">
                 <x-button.secondary wire:click="closeModal">Cancel</x-button.secondary>
-                    <x-button.primary type="submit">Save</x-button.primary>
+                <x-button.primary type="submit">Save</x-button.primary>
             </x-slot>
         </x-modal.dialog>
     </form>

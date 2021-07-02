@@ -1,4 +1,9 @@
 <x-app-layout>
+
+    <x-slot name="title">
+        Companies | TKD CRM
+    </x-slot>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Companies') }}
@@ -7,7 +12,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <x-company.list/>
+            <livewire:company.index/>
         </div>
     </div>
+
 </x-app-layout>
