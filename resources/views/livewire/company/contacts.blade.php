@@ -66,7 +66,7 @@
 
                 <x-input.group for="last_name" label="Last Name">
                     <x-input.text wire:model.lazy="editing.last_name" id="last_name" />
-                    @error('last_name') <span class="text-red-600">{{ $message }}</span> @enderror
+                    @error('editing.last_name') <span class="text-red-600">{{ $message }}</span> @enderror
                 </x-input.group>
 
                 <x-input.group for="title" label="Title">

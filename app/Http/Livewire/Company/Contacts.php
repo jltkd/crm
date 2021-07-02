@@ -41,9 +41,9 @@ class Contacts extends Component
         'editing.company_id' => 'required',
         'editing.first_name' => 'required',
         'editing.last_name' => 'required',
-        'editing.title' => 'required',
-        'editing.phone_number' => 'required',
-        'editing.email_address' => 'required'
+        'editing.title' => 'nullable',
+        'editing.phone_number' => 'nullable',
+        'editing.email_address' => 'nullable'
     ];
 
     public function closeModal()
