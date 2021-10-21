@@ -7,14 +7,24 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('client.index');
+        //
     }
 
-    public function create(Client $client)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-
+        //
     }
 
     /**
@@ -28,11 +38,15 @@ class ClientController extends Controller
         //
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Client  $client
+     * @return \Illuminate\Http\Response
+     */
     public function show(Client $client)
     {
-        return view('client.show', [
-            'client' => $client
-        ]);
+        //
     }
 
     /**
