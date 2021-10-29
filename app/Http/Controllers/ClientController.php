@@ -12,14 +12,9 @@ class ClientController extends Controller
         return view('client.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Client $client)
     {
-        //
+
     }
 
     /**
@@ -33,15 +28,11 @@ class ClientController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
     public function show(Client $client)
     {
-        //
+        return view('client.show', [
+            'client' => $client
+        ]);
     }
 
     /**

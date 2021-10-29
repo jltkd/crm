@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['auth:sanctum', 'verified'], function() {
-   Route::get('/clients', [\App\Http\Controllers\ClientController::class, 'index'])->name('client.index');
+   Route::get('/clients', [ClientController::class, 'index'])->name('client.index');
+   Route::Get('/clients/{client:slug}', [ClientController::class, 'show'])->name('client.show');
 });
