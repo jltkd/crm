@@ -4,8 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\Client;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class ClientForm extends Component
+class ClientForm extends ModalComponent
 {
 
     public $name;
@@ -31,6 +32,8 @@ class ClientForm extends Component
         $validateData = $this->validate();
 
         Client::create($validateData);
+
+        return redirect(request()->header('Referer'));
     }
 
     public function render()

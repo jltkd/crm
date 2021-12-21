@@ -1,5 +1,5 @@
-<div>
-    <h1 class="order-1 text-gray-900 text-3xl font-extrabold tracking-tight mb-4">Create Your First Client</h1>
+<div class="p-5">
+    <h1 class="order-1 text-gray-900 text-xl font-extrabold tracking-tight mb-4">Create Client</h1>
     <form wire:submit.prevent="createClient" method="post">
         @csrf
 
@@ -11,28 +11,29 @@
 
         <div class="mt-4">
             <x-jet-label for="status" value="{{ __('Status *') }}" />
-            <select wire:model.defer="status" name="status" id="status" class="border-gray-300 focus:border-tkdBlue rounded-md shadow-sm block mt-1 w-full">
+            <select wire:model.defer="status" name="status" id="status" class="border-gray-300 focus:border-tkdBlue-500 rounded-md shadow-sm block mt-1 w-full">
                 <option value="" selected="selected">Select a Status</option>
-                <option value="active">Active</option>
-                <option value="prospect">Prospect</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Prospect">Prospect</option>
             </select>
             @error('status')<span class="text-sm text-red-600">Status is Required</span>@enderror
         </div>
 
         <div class="mt-4">
             <x-jet-label for="address" value="{{ __('Address') }}" />
-            <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" autofocus autocomplete="address" />
+            <x-jet-input wire:model="address" id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" autofocus autocomplete="address" />
         </div>
 
         <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-2">
                 <x-jet-label for="city" value="{{ __('City') }}" />
-                <x-jet-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" autofocus autocomplete="city" />
+                <x-jet-input wire:model="city" id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" autofocus autocomplete="city" />
             </div>
 
             <div class="sm:col-span-2">
                 <x-jet-label for="state" value="{{ __('State') }}" />
-                <select name="status" id="status" class="border-gray-300 focus:border-tkdBlue rounded-md shadow-sm block mt-1 w-full">
+                <select wire:model="state" name="status" id="status" class="border-gray-300 focus:border-tkdBlue-500 rounded-md shadow-sm block mt-1 w-full">
                     <option value="" selected="selected">Select a State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -90,18 +91,22 @@
 
             <div class="sm:col-span-2">
                 <x-jet-label for="zip_code" value="{{ __('Zip Code') }}" />
-                <x-jet-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" :value="old('zip_code')" autofocus autocomplete="zip_code" />
+                <x-jet-input wire:model="zip_code" id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" :value="old('zip_code')" autofocus autocomplete="zip_code" />
             </div>
         </div>
 
         <div class="mt-4">
             <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
-            <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" autofocus autocomplete="phone_number" />
+            <x-jet-input wire:model="phone_number" id="phone_number" class="block mt-1 w-full" type="tel" name="phone_number" :value="old('phone_number')" autofocus autocomplete="phone_number" />
         </div>
 
         <x-jet-button class="mt-4">
             {{ __('Submit') }}
         </x-jet-button>
+
+        <button onclick="Livewire.emit('closeModal')" type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 ml-5">
+            Cancel
+        </button>
 
     </form>
 </div>
